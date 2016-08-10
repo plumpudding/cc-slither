@@ -14,11 +14,10 @@ public class Snake implements GameObject {
 	private String name;
 	private Direction direction;
 	
-	public Snake(String name, boolean isFast) {
+	public Snake(String name) {
 		this.name = name;
-		this.isFast = isFast;
 	}
-	
+
 	public boolean isAtPoint(Point p) {
 		for (Point tile:tiles)
 			if (tile == p)
@@ -54,6 +53,10 @@ public class Snake implements GameObject {
 
 	public void setDirection(Direction direction) {
 		this.direction = direction;
+	}
+	
+	public void setIsFast(boolean isFast) {
+		this.isFast = isFast;
 	}
 	
 }

@@ -26,6 +26,13 @@ public class Kevin { //the game controller
 	//TODO do more stuff here
 	public void handleClientAction(ClientAction action, Snake snake) {
 		snake.setDirection(action.getDirection());
+		snake.setIsFast(action.isFast());
+	}
+	
+	public Snake addSnake(String name) {
+		Snake snake = new Snake(name);
+		gs.snakes.add(snake);
+		return snake;
 	}
 
 }

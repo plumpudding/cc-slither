@@ -65,9 +65,7 @@ public class GameServer {
 	public Kevin getController() {
 		return controller;
 	}
-
-	//TODO do less here, move it to the controller
-	//TODO snake and client should not be bound to eachother
+	
 	public void handleClientAction(String clientActionJson, InetAddress sourceAddress, int sourcePort) {
 		ClientAction action = gson.fromJson(clientActionJson, ClientAction.class);
 		
@@ -81,8 +79,7 @@ public class GameServer {
 		}
 		
 		if (snake == null) {
-			snake = new Snake(action.getName(), action.isFast());
-			controller.getGameState().snakes.add(snake);
+			snake = controller.addSnake(action.getName());
 			clients.add(new Client(sourceAddress, sourcePort, snake));
 		}
 		

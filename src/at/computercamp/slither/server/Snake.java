@@ -16,6 +16,7 @@ public class Snake implements GameObject {
 	private Point newPoint;
 	private Point oldHead;
 	private Point tileForHead;
+	public boolean isDead = false;
  
 	@Override
 	public boolean isAtPoint(Point p) {
@@ -29,22 +30,23 @@ public class Snake implements GameObject {
 	public void move() {
 		oldHead = tiles.get(0);
 		tileForHead = tiles.get(1);
-		newPoint = null;
+		
+		newPoint = new Point();
 		switch(direction){
 			case NORTH:
-				newPoint = checkdirection(getNorthPoint(), getSouthPoint());
+				newPoint = checkDirection(getNorthPoint(), getSouthPoint());
 				break;
 				
 			case EAST:
-				newPoint = checkdirection(getEastPoint(), getWesthPoint());
+				newPoint = checkDirection(getEastPoint(), getWesthPoint());
 				break;
 			
 			case SOUTH:
-				newPoint = checkdirection(getSouthPoint(), getNorthPoint());
+				newPoint = checkDirection(getSouthPoint(), getNorthPoint());
 				break;
 			
 			case WEST:
-				newPoint = checkdirection(getWesthPoint(), getEastPoint());
+				newPoint = checkDirection(getWesthPoint(), getEastPoint());
 				break;
 		}
 		
@@ -53,15 +55,14 @@ public class Snake implements GameObject {
 		
 	}
 	
-	private Point checkdirection(Point newdirection, Point opersidedirection){
-		if(newdirection == tileForHead){
-			newPoint = opersidedirection;
+	private Point checkDirection(Point newDirection, Point oppositeDirection){
+		if(newDirection == tileForHead){
+			newPoint = oppositeDirection;
 		}else{
-			newPoint = newdirection;
+			newPoint = newDirection;
 		}
 		return newPoint;
 	}
-	
 	
 	private Point getNorthPoint(){
 		newPoint.y = oldHead.y - 1;

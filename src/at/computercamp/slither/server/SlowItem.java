@@ -15,7 +15,6 @@ public class SlowItem extends Item {
         snake.setIsSlow(true);
         if (startTime >= 10000) {
             snake.setIsSlow(false);
-            }
         }
     }
 }

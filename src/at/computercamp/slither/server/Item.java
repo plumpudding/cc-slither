@@ -20,5 +20,15 @@ public class Item implements GameObject {
 	public int getActiveDuration() {
 		return activeDuration;
 	}
+
+	@Override
+	public void collide(Snake s) {
+		//TODO
+		//s.addItem(this);
+	}
+	
+	public void activate() {
+		//TODO
+	}
 	
 }

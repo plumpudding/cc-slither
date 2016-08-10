@@ -13,11 +13,11 @@ public class Snake implements GameObject {
 	private int tickCounter;
 	private String name;
 	private Direction direction;
-	
-	public Snake(String name) {
-		this.name = name;
-	}
-
+	private Point newPoint;
+	private Point oldHead;
+	private Point tileForHead;
+ 
+	@Override
 	public boolean isAtPoint(Point p) {
 		for (Point tile:tiles)
 			if (tile == p)
@@ -27,9 +27,71 @@ public class Snake implements GameObject {
 	}
 
 	public void move() {
-		// TODO move
+		oldHead = tiles.get(0);
+		tileForHead = tiles.get(1);
+		newPoint = null;
+		switch(direction){
+			case NORTH:
+				newPoint = checkdirection(getNorthPoint(), getSouthPoint());
+				break;
+				
+			case EAST:
+				newPoint = checkdirection(getEastPoint(), getWesthPoint());
+				break;
+			
+			case SOUTH:
+				newPoint = checkdirection(getSouthPoint(), getNorthPoint());
+				break;
+			
+			case WEST:
+				newPoint = checkdirection(getWesthPoint(), getEastPoint());
+				break;
+		}
+		
+		tiles.remove(tiles.size() - 1);
+		tiles.add(0, newPoint);
+		
 	}
-
+	
+	private Point checkdirection(Point newdirection, Point opersidedirection){
+		if(newdirection == tileForHead){
+			newPoint = opersidedirection;
+		}else{
+			newPoint = newdirection;
+		}
+		return newPoint;
+	}
+	
+	
+	private Point getNorthPoint(){
+		newPoint.y = oldHead.y - 1;
+		newPoint.x = oldHead.x;
+		return newPoint;
+		
+	}
+	private Point getEastPoint(){
+		newPoint.y = oldHead.y;
+		newPoint.x = oldHead.x + 1;
+		return newPoint;
+		
+	}
+	private Point getSouthPoint(){
+		newPoint.y = oldHead.y + 1;
+		newPoint.x = oldHead.x;
+		return newPoint;
+		
+	}
+	private Point getWesthPoint(){
+		newPoint.y = oldHead.y;
+		newPoint.x = oldHead.x - 1;
+		return newPoint;
+		
+	}
+	
+	public Snake(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public void tick() {
 		for (Item item:activeItems)
@@ -57,6 +119,11 @@ public class Snake implements GameObject {
 	
 	public void setIsFast(boolean isFast) {
 		this.isFast = isFast;
+	}
+
+	@Override
+	public void collide(Snake s) {
+		//TODO
 	}
 	
 }

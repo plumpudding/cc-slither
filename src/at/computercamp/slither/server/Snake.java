@@ -9,7 +9,9 @@ public class Snake implements GameObject {
 	private List<Item> activeItems = new ArrayList<Item>();
 	private static int moveInterval = 6;
 	private static int moveIntervalFast = 3;
+	private static int moveIntervalSlow = 10;
 	private boolean isFast;
+	private boolean isSlow;
 	private int tickCounter;
 	private String name;
 	private Direction direction;
@@ -91,11 +93,13 @@ public class Snake implements GameObject {
 	public Snake(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public void tick() {
-		for (Item item:activeItems)
+		for (Item item:activeItems) {
 			item.tick();
+			item.applyEffectToSnake(this);
+		}
 		
 		tickCounter += 1;
 		// 1 tick = 100ms
@@ -103,7 +107,10 @@ public class Snake implements GameObject {
 		if (isFast && tickCounter >= moveIntervalFast){
 			move();
 			tickCounter = 0;
-		} else if (tickCounter >= moveInterval){
+		}if (isSlow && tickCounter >= moveIntervalSlow) {
+			move();
+			tickCounter = 0;
+		}else if (tickCounter >= moveInterval){
 			move();
 			tickCounter = 0;
 		}
@@ -119,6 +126,10 @@ public class Snake implements GameObject {
 	
 	public void setIsFast(boolean isFast) {
 		this.isFast = isFast;
+	}
+
+	public void setIsSlow(boolean isSlow){
+		this.isSlow = isSlow;
 	}
 
 	@Override

@@ -28,6 +28,7 @@ public class Snake implements GameObject {
 	}
 
 	public void move() {
+		//Moves the snake
 		oldHead = tiles.get(0);
 		tileForHead = tiles.get(1);
 

@@ -100,4 +100,8 @@ public class Kevin { //the game controller
 		return snake;
 	}
 
+	public void removeSnake(Snake snake) {
+		gs.snakes.remove(snake);
+	}
+
 }

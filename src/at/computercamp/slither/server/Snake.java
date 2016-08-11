@@ -18,6 +18,7 @@ public class Snake implements GameObject {
 	private Point newPoint;
 	private Point oldHead;
 	private Point tileForHead;
+	public boolean isDead;
  
 	@Override
 	public boolean isAtPoint(Point p) {

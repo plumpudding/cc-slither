@@ -1,7 +1,5 @@
 package at.computercamp.slither.server;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Item implements GameObject {
 
 	private int activeDuration;
@@ -33,8 +31,8 @@ public class Item implements GameObject {
 		//TODO
 	}
 
-	protected void applyEffectToSnake(Snake snake){
-		throw new NotImplementedException();
+	protected void applyEffectToSnake(Snake snake) {
+		//TODO
 	}
 	
 }

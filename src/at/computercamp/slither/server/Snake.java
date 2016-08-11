@@ -28,7 +28,14 @@ public class Snake implements GameObject {
 		
 		return false;
 	}
-
+	
+	public void checkForCollison(Point point){
+		GameObject collider = GameServer.getInstance().getController().getObjectAtPoint(point);
+		if(collider != null){
+			collider.collide(this);
+		}
+	}
+	
 	public void move() {
 		oldHead = tiles.get(0);
 		tileBeforeHead = tiles.get(1);
@@ -36,6 +43,7 @@ public class Snake implements GameObject {
 		tiles.remove(tiles.size() - 1);
 		tiles.add(0, newPoint);
 	}
+	
 	
 	private Point checkDirection(Direction d){
 		Direction od = DirectionHelper.getOppositeDirection(d);
@@ -90,7 +98,13 @@ public class Snake implements GameObject {
 
 	@Override
 	public void collide(Snake s) {
-		//TODO
+		s.isDead = true;
+	}
+
+	public void addItem(Item item) {
+		activeItems.add(item);
+		item.activate();
+		
 	}
 	
 }

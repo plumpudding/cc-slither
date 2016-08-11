@@ -48,13 +48,20 @@ public class Networking extends Thread {
 			//TODO: find last package in message, process it and remove it from the buffer
 			
 			int startIndex = message.lastIndexOf("|||") + 3;
-			int endIndex = message.lastIndexOf("$$$") - 1;
+			int endIndex = message.lastIndexOf("$$$");
+			
+			//if we received a part of a packet, wait for the next part to arrive
+			if (startIndex < 0 || endIndex < 0 || startIndex >= endIndex)
+				continue;
 			
 			System.out.println(message.substring(startIndex, endIndex));
+
+			System.out.println(messageBuffer.get(receivePacket.getSocketAddress()));
 			
-			//Check indeices
-			//bla,  blubb);
-			//messageBuffer.put(receivePacket.getSocketAddress(), message.substring(endIndex + 3));
+			//now we know we can process the complete message, so we can remove is from the buffer
+			messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex));
+			
+			System.out.println(messageBuffer.get(receivePacket.getSocketAddress()));
 			
 			//gameServer.handleClientAction(receivePacket.getData().toString(), receivePacket.getAddress(), receivePacket.getPort());
 		}

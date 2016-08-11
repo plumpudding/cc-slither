@@ -10,13 +10,14 @@ public class GameServer {
 
 	private int listenPort = 51265;
 	private Kevin controller = new Kevin();
-	private Networking networking = new Networking(listenPort);
+	private Networking networking;
 	private List<Client> clients = new ArrayList<Client>();
 	private String gameStateJson;
 	private Gson gson = new Gson();
 
 	private GameServer() {
-		new Thread(networking).start(); 
+		networking = new Networking(listenPort, this);
+		networking.start();
 		while (true) {
 			long startTime = System.currentTimeMillis();
 			loop();

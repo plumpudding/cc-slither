@@ -6,17 +6,19 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-public class Networking  implements Runnable{
+public class Networking extends Thread {
 	
 	private DatagramSocket sock;
+	private GameServer gameServer;
 	
-	
-	public Networking(int port) {
+	public Networking(int port, GameServer gameServer) {
 		try {
 			sock = new DatagramSocket(port);
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
+		
+		this.gameServer = gameServer;
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class Networking  implements Runnable{
 				e.printStackTrace();
 			}
 			
-			GameServer.getInstance().handleClientAction(receivePacket.getData().toString(), receivePacket.getAddress(), receivePacket.getPort());
+			gameServer.handleClientAction(receivePacket.getData().toString(), receivePacket.getAddress(), receivePacket.getPort());
 		}
 		
 	}

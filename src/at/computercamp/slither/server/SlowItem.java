@@ -1,8 +1,5 @@
 package at.computercamp.slither.server;
 
-import java.time.Duration;
-import java.time.Instant;
-
 /**
  * Created by feliumla16 on 10.08.2016.
  */

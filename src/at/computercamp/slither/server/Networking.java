@@ -41,27 +41,25 @@ public class Networking extends Thread {
 			}
 			
 			String message = new String(receivePacket.getData());
+			message = message.substring(0, message.indexOf(0x00));
 			if (messageBuffer.containsKey(receivePacket.getSocketAddress())){
 				message = messageBuffer.get(receivePacket.getSocketAddress()) + message;
 			}
 			
-			//TODO: find last package in message, process it and remove it from the buffer
-			
 			int startIndex = message.lastIndexOf("|||") + 3;
 			int endIndex = message.lastIndexOf("$$$");
-			
+
 			//if we received a part of a packet, wait for the next part to arrive
-			if (startIndex < 0 || endIndex < 0 || startIndex >= endIndex)
+			if (startIndex < 0 || endIndex < 0 || startIndex >= endIndex) {
+				messageBuffer.put(receivePacket.getSocketAddress(), message);
 				continue;
-			
+			}
+
 			System.out.println(message.substring(startIndex, endIndex));
 
-			System.out.println(messageBuffer.get(receivePacket.getSocketAddress()));
 			
 			//now we know we can process the complete message, so we can remove is from the buffer
-			messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex));
-			
-			System.out.println(messageBuffer.get(receivePacket.getSocketAddress()));
+			messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex - 3));
 			
 			//gameServer.handleClientAction(receivePacket.getData().toString(), receivePacket.getAddress(), receivePacket.getPort());
 		}

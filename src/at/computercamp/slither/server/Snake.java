@@ -17,13 +17,13 @@ public class Snake implements GameObject {
 	private Direction direction;
 	private Point newPoint;
 	private Point oldHead;
-	private Point tileForHead;
+	private Point tileBeforeHead;
 	public boolean isDead;
- 
+
 	@Override
 	public boolean isAtPoint(Point p) {
 		for (Point tile:tiles)
-			if (tile == p)
+			if (tile.equals(p))
 				return true;
 		
 		return false;
@@ -31,66 +31,21 @@ public class Snake implements GameObject {
 
 	public void move() {
 		oldHead = tiles.get(0);
-		tileForHead = tiles.get(1);
-		newPoint = null;
-		switch(direction){
-			case NORTH:
-				newPoint = checkdirection(getNorthPoint(), getSouthPoint());
-				break;
-				
-			case EAST:
-				newPoint = checkdirection(getEastPoint(), getWesthPoint());
-				break;
-			
-			case SOUTH:
-				newPoint = checkdirection(getSouthPoint(), getNorthPoint());
-				break;
-			
-			case WEST:
-				newPoint = checkdirection(getWesthPoint(), getEastPoint());
-				break;
-		}
-		
+		tileBeforeHead = tiles.get(1);
+		newPoint = checkDirection(direction);
 		tiles.remove(tiles.size() - 1);
 		tiles.add(0, newPoint);
-		
 	}
 	
-	private Point checkdirection(Point newdirection, Point opersidedirection){
-		if(newdirection == tileForHead){
-			newPoint = opersidedirection;
-		}else{
-			newPoint = newdirection;
-		}
-		return newPoint;
-	}
-	
-	
-	private Point getNorthPoint(){
-		newPoint.y = oldHead.y - 1;
-		newPoint.x = oldHead.x;
-		return newPoint;
+	private Point checkDirection(Direction d){
+		Direction od = DirectionHelper.getOppositeDirection(d);
 		
+		if(oldHead == tileBeforeHead)
+			return oldHead.movePoint(od);
+		else
+			return oldHead.movePoint(d);
 	}
-	private Point getEastPoint(){
-		newPoint.y = oldHead.y;
-		newPoint.x = oldHead.x + 1;
-		return newPoint;
-		
-	}
-	private Point getSouthPoint(){
-		newPoint.y = oldHead.y + 1;
-		newPoint.x = oldHead.x;
-		return newPoint;
-		
-	}
-	private Point getWesthPoint(){
-		newPoint.y = oldHead.y;
-		newPoint.x = oldHead.x - 1;
-		return newPoint;
-		
-	}
-	
+
 	public Snake(String name) {
 		this.name = name;
 	}

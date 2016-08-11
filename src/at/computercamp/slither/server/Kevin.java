@@ -1,3 +1,4 @@
+
 package at.computercamp.slither.server;
 
 public class Kevin { //the game controller
@@ -97,6 +98,13 @@ public class Kevin { //the game controller
 		
 		Snake snake = new Snake(name);
 		gs.snakes.add(snake);
+		
+		int length = Math.round(Math.sqrt(gs.snakes.size()));
+		if(gs.boardHeight < length){
+			gs.boardHeight = length;
+			gs.boardLength = length;
+		}
+
 		return snake;
 	}
 

@@ -23,8 +23,7 @@ public class Item implements GameObject {
 
 	@Override
 	public void collide(Snake s) {
-		//TODO
-		//s.addItem(this);
+		s.addItem(this);
 	}
 	
 	public void activate() {

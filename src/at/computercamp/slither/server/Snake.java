@@ -7,6 +7,7 @@ public class Snake implements GameObject {
 
 	private List<Point> tiles = new ArrayList<Point>();
 	private List<Item> activeItems = new ArrayList<Item>();
+	private int notUsedTiles = 0 ;
 	private static int moveInterval = 6;
 	private static int moveIntervalFast = 3;
 	private static int moveIntervalSlow = 10;
@@ -40,7 +41,10 @@ public class Snake implements GameObject {
 		oldHead = tiles.get(0);
 		tileBeforeHead = tiles.get(1);
 		newPoint = checkDirection(direction);
-		tiles.remove(tiles.size() - 1);
+		checkForCollison(newPoint);
+		if(notUsedTiles == 0){
+			tiles.remove(tiles.size() - 1);
+		}else{	notUsedTiles--;	} 
 		tiles.add(0, newPoint);
 	}
 	
@@ -94,6 +98,9 @@ public class Snake implements GameObject {
 
 	public void setIsSlow(boolean isSlow){
 		this.isSlow = isSlow;
+	}
+	public void addTile(){
+		notUsedTiles++;
 	}
 
 	@Override

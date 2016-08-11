@@ -1,0 +1,25 @@
++ clientaction stuff --milan
+  + packet listener
+  + code verlagern von GameServer zu Kevin
+- Items und Effekte --felix
+  - activate funktion
+    - item soll festlegen was es tut
+    - active item decay
++ threads --noah
+  + networking muss ein thread sein
++ clients durchprüfen nach timeout --laurids
+  + lastseen
+  + nach 20 ticks wird client gelÃscht
+- snake collision check --noah
+  - items aufsammeln
+  - futter fressen
+  - futter generieren
+  - kleiner werden bei isFast
+- spielfeld --laurids
+- networking --milan
+  - threadsafe?
+  - paket wird markiert durch "|||json$$$"
+- isatpoint equal statt == --milan
+- spawn snake add tiles to snake --milan
+- give class kevin a fucking speaking name!!!
+

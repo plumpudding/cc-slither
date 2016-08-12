@@ -53,7 +53,7 @@ public class Snake implements GameObject {
 	private Point checkDirection(Direction d) {
 		Direction od = DirectionHelper.getOppositeDirection(d);
 
-		if (oldHead == tileBeforeHead)
+		if (oldHead.movePoint(d) == tileBeforeHead)
 			return oldHead.movePoint(od);
 		else
 			return oldHead.movePoint(d);

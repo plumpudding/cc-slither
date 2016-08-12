@@ -27,10 +27,11 @@ public class Networking extends Thread {
 	@Override
 	public void run() {
 
-		byte[] buffer = new byte[1280];
-		DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
+		
 
 		while (true) {
+			byte[] buffer = new byte[1280];
+			DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
 			try {
 				sock.receive(receivePacket);
 			} catch (IOException e) {
@@ -39,6 +40,7 @@ public class Networking extends Thread {
 
 			String message = new String(receivePacket.getData());
 			message = message.substring(0, message.indexOf(0x00));
+			
 			if (messageBuffer.containsKey(receivePacket.getSocketAddress())) {
 				message = messageBuffer.get(receivePacket.getSocketAddress()) + message;
 			}
@@ -55,7 +57,8 @@ public class Networking extends Thread {
 
 			// now we know we can process the complete message, so we can remove
 			// is from the buffer
-			messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex - 3));
+			//messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex - 3));
+			messageBuffer.put(receivePacket.getSocketAddress(), "");
 
 			message = message.substring(startIndex, endIndex);
 			GameServer.getInstance().handleClientAction(message, receivePacket.getSocketAddress());
@@ -66,6 +69,7 @@ public class Networking extends Thread {
 
 	public void sendData(InetAddress address, int port, String data) {
 
+		//System.out.println(data);
 		byte[] sendData = ("|||" + data + "$$$").getBytes();
 		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, address, port);
 

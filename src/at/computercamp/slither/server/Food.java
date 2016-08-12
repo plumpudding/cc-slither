@@ -4,6 +4,7 @@ public class Food extends Item {
 	
 	public Food(Point point) {
 		super(point);
+		this.type = "Food";
 	}
 
 	@Override

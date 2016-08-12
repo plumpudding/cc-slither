@@ -16,9 +16,9 @@ public class Item implements GameObject {
 	@Override
 	public void tick() {
 		activeDuration = 10;
-		if(Math.random() < inactiveDecayProbability)
+		if (Math.random() < inactiveDecayProbability)
 			isDestroyed = true;
-		if (System.currentTimeMillis() - startTime >= activeDuration * 1000){
+		if (System.currentTimeMillis() - startTime >= activeDuration * 1000) {
 			isDestroyed = true;
 		}
 	}
@@ -29,12 +29,12 @@ public class Item implements GameObject {
 
 	@Override
 	public void collide(Snake s) {
-		startTime =  System.currentTimeMillis();
+		startTime = System.currentTimeMillis();
 		isActive = true;
 		s.addItem(this);
 	}
-	
+
 	public void activate() {
-		//TODO
+		// TODO
 	}
 }

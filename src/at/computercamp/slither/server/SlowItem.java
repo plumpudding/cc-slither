@@ -5,6 +5,10 @@ package at.computercamp.slither.server;
  */
 public class SlowItem extends Item {
 	
+	public SlowItem(Point point) {
+		super(point);
+	}
+
 	@Override
 	public void collide(Snake s) {
 		super.collide(s);

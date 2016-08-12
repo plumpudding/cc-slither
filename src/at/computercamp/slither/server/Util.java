@@ -1,6 +1,6 @@
 package at.computercamp.slither.server;
 
-public class DirectionHelper {
+public class Util {
 
 	public static Direction getOppositeDirection(Direction d) {
 
@@ -18,4 +18,5 @@ public class DirectionHelper {
 		return null;
 
 	}
+	
 }

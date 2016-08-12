@@ -1,9 +1,14 @@
 
 package at.computercamp.slither.server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kevin { // the game controller
 
 	private GameState gs = new GameState();
+	private List<Snake> snakesToRemove = new ArrayList<Snake>();
+	private List<Item> itemsToRemove = new ArrayList<Item>();
 
 	// tick tick tick...
 
@@ -11,18 +16,30 @@ public class Kevin { // the game controller
 		for (Snake snake : gs.snakes) {
 			snake.tick();
 			if (snake.isDead) {
-				gs.snakes.remove(snake);
+				snakesToRemove.add(snake);
 				snake = null;
 			}
 		}
+		
+		for (Snake snake : snakesToRemove) {
+			gs.snakes.remove(snake);
+		}
+		
+		snakesToRemove.clear();
 
 		for (Item item : gs.inactiveItems) {
 			item.tick();
 			if (item.isDestroyed) {
-				gs.inactiveItems.remove(item);
+				itemsToRemove.add(item);
 				item = null;
 			}
 		}
+		
+		for (Item item : itemsToRemove) {
+			gs.inactiveItems.remove(item);
+		}
+		
+		itemsToRemove.clear();
 
 		if(Math.random() >= 0.9){
 			gs.inactiveItems.add(new Food(findEmptyPosition()));

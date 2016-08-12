@@ -7,12 +7,12 @@
     - active item decay
 + threads --noah
   + networking muss ein thread sein
-+ clients durchprüfen nach timeout --laurids
++ clients durchprï¿½fen nach timeout --laurids
   + lastseen
-  + nach 20 ticks wird client gelÃscht
-- snake collision check --noah
-  - items aufsammeln
-  - futter fressen
+  + nach 20 ticks wird client gelï¿½scht
++ snake collision check --noah
+  + items aufsammeln
+  + futter fressen
   - futter generieren
   - kleiner werden bei isFast
 - spielfeld --laurids

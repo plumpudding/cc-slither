@@ -62,6 +62,7 @@ public class Snake implements GameObject {
 	public Snake(String name) {
 		this.name = name;
 	}
+	
 
 	@Override
 	public void tick() {

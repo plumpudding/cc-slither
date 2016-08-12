@@ -16,8 +16,10 @@ public class GameServer {
 	private String gameStateJson;
 	private Gson gson = new Gson();
 
-	private GameServer() {
-		networking = new Networking(listenPort, this);
+	private GameServer() {}
+	
+	public void init() {
+		networking = new Networking(listenPort);
 		networking.start();
 		while (true) {
 			long startTime = System.currentTimeMillis();

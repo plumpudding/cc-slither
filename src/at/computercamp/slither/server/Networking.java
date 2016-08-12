@@ -12,10 +12,9 @@ import java.util.Map;
 public class Networking extends Thread {
 
 	private DatagramSocket sock;
-	private GameServer gameServer;
 	private Map<SocketAddress, String> messageBuffer;
 
-	public Networking(int port, GameServer gameServer) {
+	public Networking(int port) {
 		try {
 			sock = new DatagramSocket(port);
 		} catch (SocketException e) {
@@ -23,8 +22,6 @@ public class Networking extends Thread {
 		}
 
 		messageBuffer = new HashMap<>();
-
-		this.gameServer = gameServer;
 	}
 
 	@Override
@@ -61,7 +58,7 @@ public class Networking extends Thread {
 			messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex - 3));
 
 			message = message.substring(startIndex, endIndex);
-			//gameServer.handleClientAction(message, receivePacket.getSocketAddress());
+			GameServer.getInstance().handleClientAction(message, receivePacket.getSocketAddress());
 			// receivePacket.getAddress(), receivePacket.getPort());
 		}
 

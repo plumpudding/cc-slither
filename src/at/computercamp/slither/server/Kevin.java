@@ -24,7 +24,9 @@ public class Kevin { // the game controller
 			}
 		}
 
-		// spawn items
+		if(Math.random() >= 0.9){
+			gs.inactiveItems.add(new Food(findEmptyPosition()));
+		}
 
 	}
 

@@ -76,9 +76,10 @@ public class GameServer {
 		ClientAction action = gson.fromJson(clientActionJson, ClientAction.class);
 		
 		Snake snake = null;
-		
+
+		//TODO: maybe replace List<client> with hashhmap to make lookup faster
 		for (Client client:clients) {
-			if (client.getSnake().getName() == action.getName()) {
+			if (client.getSnake().getName().equals(action.getName())) {
 				snake = client.getSnake();
 				break;
 			}

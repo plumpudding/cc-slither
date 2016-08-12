@@ -113,5 +113,13 @@ public class Snake implements GameObject {
 		item.activate();
 		
 	}
-	
+
+	public void setIsSlow(boolean isSlow){
+		this.isSlow = isSlow;
+	}
+
+	public void setIsFast(boolean isFast){
+		this.isFast = isFlast;
+	}
+
 }

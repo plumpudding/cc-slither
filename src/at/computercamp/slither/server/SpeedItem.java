@@ -5,7 +5,8 @@ package at.computercamp.slither.server;
  */
 public class SpeedItem extends Item {
     @Override
-    protected void applyEffectToSnake(Snake snake) {
-        snake.setIsFast(true);
+    public void collide(Snake s){
+        super.collide(s);
+        s.setIsFast();
     }
 }

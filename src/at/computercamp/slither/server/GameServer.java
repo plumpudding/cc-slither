@@ -1,6 +1,7 @@
 package at.computercamp.slither.server;
 
-import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,14 +66,14 @@ public class GameServer {
 		if (gameStateJson == null)
 			gameStateJson = gson.toJson(controller.getGameState());
 
-		networking.sendData(client.getAddress(), client.getPort(), gameStateJson);
+		networking.sendData(((InetSocketAddress) client.getSocketAddress()).getAddress(), ((InetSocketAddress) client.getSocketAddress()).getPort(), gameStateJson);
 	}
 
 	public Kevin getController() {
 		return controller;
 	}
 
-	public void handleClientAction(String clientActionJson, InetAddress sourceAddress, int sourcePort) {
+	public void handleClientAction(String clientActionJson, SocketAddress socketAddress) {
 		ClientAction action = gson.fromJson(clientActionJson, ClientAction.class);
 
 		Snake snake = null;
@@ -87,7 +88,7 @@ public class GameServer {
 
 		if (snake == null) {
 			snake = controller.addSnake(action.getName());
-			clients.add(new Client(sourceAddress, sourcePort, snake));
+			clients.add(new Client(socketAddress, snake));
 		}
 
 		controller.handleClientAction(action, snake);

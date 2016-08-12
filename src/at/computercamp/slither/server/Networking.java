@@ -56,13 +56,12 @@ public class Networking extends Thread {
 				continue;
 			}
 
-			System.out.println(message.substring(startIndex, endIndex));
-
 			// now we know we can process the complete message, so we can remove
 			// is from the buffer
 			messageBuffer.put(receivePacket.getSocketAddress(), message.substring(0, startIndex - 3));
 
-			// gameServer.handleClientAction(receivePacket.getData().toString(),
+			message = message.substring(startIndex, endIndex);
+			//gameServer.handleClientAction(message, receivePacket.getSocketAddress());
 			// receivePacket.getAddress(), receivePacket.getPort());
 		}
 

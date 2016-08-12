@@ -59,8 +59,9 @@ public class Snake implements GameObject {
 			return oldHead.movePoint(d);
 	}
 
-	public Snake(String name) {
+	public Snake(String name, Point point) {
 		this.name = name;
+		this.tiles.add(point);
 	}
 	
 

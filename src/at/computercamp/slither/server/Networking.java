@@ -66,7 +66,7 @@ public class Networking extends Thread {
 
 	public void sendData(InetAddress address, int port, String data) {
 
-		byte[] sendData = data.getBytes();
+		byte[] sendData = ("|||" + data + "$$$").getBytes();
 		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, address, port);
 
 		try {

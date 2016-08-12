@@ -34,8 +34,8 @@ public class Snake implements GameObject {
 
 	public void checkForCollison(Point point) {
 		if (point.x == 0 || point.y == 0
-				|| point.x == GameServer.getInstance().getController().getGameState().boardWidth
-				|| point.y == GameServer.getInstance().getController().getGameState().boardWidth) {
+				|| point.x == GameServer.getInstance().getController().getGameState().worldWidth
+				|| point.y == GameServer.getInstance().getController().getGameState().worldWidth) {
 			die();
 		}
 		GameObject collider = GameServer.getInstance().getController().getObjectAtPoint(point);

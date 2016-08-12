@@ -17,7 +17,6 @@ public class Kevin { // the game controller
 			snake.tick();
 			if (snake.isDead()) {
 				snakesToRemove.add(snake);
-				gs.snakes.remove(snake);
 			}
 		}
 		
@@ -82,8 +81,8 @@ public class Kevin { // the game controller
 
 		// TODO prevent endless loop
 		while (true) {
-			int x = (int) (Math.random() * gs.boardWidth);
-			int y = (int) (Math.random() * gs.boardHeight);
+			int x = (int) (Math.random() * gs.worldWidth);
+			int y = (int) (Math.random() * gs.worldHeight);
 			p = new Point(x, y);
 			if (getObjectAtPoint(p) == null) {
 				return p;
@@ -130,17 +129,13 @@ public class Kevin { // the game controller
 		}
 		
 		int length = (int) Math.round(Math.sqrt(gs.snakes.size()));
-		if (gs.boardHeight < length) {
-			gs.boardHeight = length;
-			gs.boardWidth = length;
+		if (gs.worldHeight < length) {
+			gs.worldHeight = length;
+			gs.worldWidth = length;
 		}
 
 
 		return snake;
-	}
-
-	public void removeSnake(Snake snake) {
-		gs.snakes.remove(snake);
 	}
 
 	public void additem(Food food) {

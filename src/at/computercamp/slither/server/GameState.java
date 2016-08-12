@@ -8,7 +8,7 @@ public class GameState {
 	List<Item> inactiveItems = new ArrayList<Item>();
 	List<Snake> snakes = new ArrayList<Snake>();
 
-	int boardHeight = 100;
-	int boardWidth = 100;
+	int worldHeight = 100;
+	int worldWidth = 100;
 
 }

@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 
 public class GameServer {
 
-	private int listenPort = 51265;
+	private int listenPort = 12345;
 	private Kevin controller = new Kevin();
 	private Networking networking;
 	private List<Client> clients = new ArrayList<Client>();
@@ -26,8 +26,11 @@ public class GameServer {
 			long startTime = System.currentTimeMillis();
 			loop();
 			// sleep for 100 - the duration of loop()
+			//System.out.println(startTime);
+			//System.out.println(System.currentTimeMillis() - startTime);
 			try {
-				Thread.sleep(100 - (System.currentTimeMillis() - startTime));
+				Thread.sleep(100);
+				//Thread.sleep(100 - (System.currentTimeMillis() - startTime));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -47,19 +50,20 @@ public class GameServer {
 	// main loop
 
 	public void loop() {
-		controller.tick();
 
 		for (Client client : clients) {
 			sendDataToClient(client);
 			if (!client.isOnline()) {
 				clientsToRemove.add(client);
-				controller.removeSnake(client.getSnake());
+				client.getSnake().die();
 			}
 		}
 		
 		for (Client client : clientsToRemove) {
 			clients.remove(client);
 		}
+		
+		controller.tick();
 		
 		clientsToRemove.clear();
 
@@ -89,7 +93,7 @@ public class GameServer {
 
 		// TODO: maybe replace List<client> with hashhmap to make lookup faster
 		for (Client client : clients) {
-			if (client.getSnake().getName() == action.getName()) {
+			if (client.getSnake().getName().equals(action.getName())) {
 				snake = client.getSnake();
 				break;
 			}

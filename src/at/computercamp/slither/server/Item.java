@@ -4,18 +4,18 @@ public class Item implements GameObject {
 
 	private int activeDuration;
 	private double inactiveDecayProbability;
-	private Point location;
+	private Point position;
 	public boolean isDestroyed;
 	private long startTime;
 	private boolean isActive = false;
-	private String type = "dummy";
+	public String type = "dummy";
 	private int sizeIncrement = 0;
 
 	public boolean isAtPoint(Point p) {
-		return p == location;
+		return p == position;
 	}
 	public Item(Point point) {
-		this.location = point;
+		this.position = point;
 	}
 	
 	

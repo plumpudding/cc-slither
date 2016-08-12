@@ -5,14 +5,14 @@ public class Util {
 	public static Direction getOppositeDirection(Direction d) {
 
 		switch (d) {
-		case NORTH:
-			return Direction.SOUTH;
-		case EAST:
-			return Direction.WEST;
-		case SOUTH:
-			return Direction.NORTH;
-		case WEST:
-			return Direction.EAST;
+		case North:
+			return Direction.South;
+		case East:
+			return Direction.West;
+		case South:
+			return Direction.North;
+		case West:
+			return Direction.East;
 		}
 
 		return null;

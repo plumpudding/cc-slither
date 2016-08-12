@@ -29,13 +29,13 @@ public class Point {
 	public Point movePoint(Direction d) {
 
 		switch (d) {
-		case NORTH:
+		case North:
 			return this.getNorthPoint();
-		case EAST:
+		case East:
 			return this.getEastPoint();
-		case SOUTH:
+		case South:
 			return this.getSouthPoint();
-		case WEST:
+		case West:
 			return this.getWestPoint();
 		}
 

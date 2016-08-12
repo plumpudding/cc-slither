@@ -22,10 +22,14 @@ public class Item implements GameObject {
 	@Override
 	public void tick() {
 		activeDuration = 10;
-		if (Math.random() < inactiveDecayProbability)
-			isDestroyed = true;
-		if (System.currentTimeMillis() - startTime >= activeDuration * 1000) {
-			isDestroyed = true;
+		if(!isActive){
+			if (Math.random() < inactiveDecayProbability){
+				isDestroyed = true;
+			}
+		}else{
+			if (System.currentTimeMillis() - startTime >= activeDuration * 1000) {
+				isDestroyed = true;
+			}
 		}
 	}
 

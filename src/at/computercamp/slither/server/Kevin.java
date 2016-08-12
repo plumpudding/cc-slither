@@ -75,7 +75,7 @@ public class Kevin { // the game controller
 
 		// TODO prevent endless loop
 		while (true) {
-			int x = (int) (Math.random() * gs.boardLength);
+			int x = (int) (Math.random() * gs.boardWidth);
 			int y = (int) (Math.random() * gs.boardHeight);
 			p = new Point(x, y);
 			if (getObjectAtPoint(p) == null) {
@@ -125,7 +125,7 @@ public class Kevin { // the game controller
 		int length = (int) Math.round(Math.sqrt(gs.snakes.size()));
 		if (gs.boardHeight < length) {
 			gs.boardHeight = length;
-			gs.boardLength = length;
+			gs.boardWidth = length;
 		}
 
 

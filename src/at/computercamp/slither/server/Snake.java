@@ -14,12 +14,14 @@ public class Snake implements GameObject {
 	private boolean isFast;
 	private boolean isSlow;
 	private int tickCounter;
-	private String name;
+	private String playerName;
 	private Direction direction;
 	private Point newPoint;
 	private Point oldHead;
 	private Point tileBeforeHead;
 	private boolean isDead;
+	private Color color = new Color();
+	private int speed = 1;
 
 	@Override
 	public boolean isAtPoint(Point p) {
@@ -32,8 +34,8 @@ public class Snake implements GameObject {
 
 	public void checkForCollison(Point point) {
 		if (point.x == 0 || point.y == 0
-				|| point.x == GameServer.getInstance().getController().getGameState().boardLength
-				|| point.y == GameServer.getInstance().getController().getGameState().boardLength) {
+				|| point.x == GameServer.getInstance().getController().getGameState().boardWidth
+				|| point.y == GameServer.getInstance().getController().getGameState().boardWidth) {
 			die();
 		}
 		GameObject collider = GameServer.getInstance().getController().getObjectAtPoint(point);
@@ -72,7 +74,7 @@ public class Snake implements GameObject {
 	}
 
 	public Snake(String name, Point point) {
-		this.name = name;
+		this.playerName = name;
 		this.tiles.add(point);
 	}
 
@@ -99,7 +101,7 @@ public class Snake implements GameObject {
 	}
 
 	public String getName() {
-		return name;
+		return playerName;
 	}
 
 	public void setDirection(Direction direction) {

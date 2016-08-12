@@ -9,6 +9,6 @@ public class GameState {
 	List<Snake> snakes = new ArrayList<Snake>();
 
 	int boardHeight = 100;
-	int boardLength = 100;
+	int boardWidth = 100;
 
 }

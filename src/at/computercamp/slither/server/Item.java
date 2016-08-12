@@ -8,6 +8,8 @@ public class Item implements GameObject {
 	public boolean isDestroyed;
 	private long startTime;
 	private boolean isActive = false;
+	private String type = "dummy";
+	private int sizeIncrement = 0;
 
 	public boolean isAtPoint(Point p) {
 		return p == location;

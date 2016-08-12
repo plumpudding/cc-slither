@@ -88,20 +88,20 @@ public class Kevin { // the game controller
 	}
 
 	public Snake addSnake(String name) {
-		/*Point[] startTiles = new Point[3];
+		Point[] startTiles = new Point[3];
 
 		startTiles[0] = findEmptyPosition();
 
 		for (int i = 1; i < startTiles.length; i++) {
 			startTiles[i] = findEmptyPosition(startTiles[i - 1]);
-		}*/
+		}
 
 		Snake snake = new Snake(name, findEmptyPosition());
 		gs.snakes.add(snake);
 		
-		snake.addTile();
-		snake.addTile();
-		snake.addTile();
+		for (Point tile : startTiles) {
+			snake.addTile(tile);
+		}
 		
 		int length = (int) Math.round(Math.sqrt(gs.snakes.size()));
 		if (gs.boardHeight < length) {

@@ -19,7 +19,7 @@ public class Snake implements GameObject {
 	private Point newPoint;
 	private Point oldHead;
 	private Point tileBeforeHead;
-	public boolean isDead;
+	private boolean isDead;
 
 	@Override
 	public boolean isAtPoint(Point p) {
@@ -31,6 +31,11 @@ public class Snake implements GameObject {
 	}
 
 	public void checkForCollison(Point point) {
+		if (point.x == 0 || point.y == 0
+				|| point.x == GameServer.getInstance().getController().getGameState().boardLength
+				|| point.y == GameServer.getInstance().getController().getGameState().boardLength) {
+			die();
+		}
 		GameObject collider = GameServer.getInstance().getController().getObjectAtPoint(point);
 		if (collider != null) {
 			collider.collide(this);
@@ -50,6 +55,13 @@ public class Snake implements GameObject {
 		tiles.add(0, newPoint);
 	}
 
+	public void die() {
+		for (Point tile : tiles) {
+			GameServer.getInstance().getController().additem(new Food(tile));
+		}
+		isDead = true;
+	}
+
 	private Point checkDirection(Direction d) {
 		Direction od = Util.getOppositeDirection(d);
 
@@ -63,7 +75,6 @@ public class Snake implements GameObject {
 		this.name = name;
 		this.tiles.add(point);
 	}
-	
 
 	@Override
 	public void tick() {
@@ -109,15 +120,19 @@ public class Snake implements GameObject {
 
 	@Override
 	public void collide(Snake s) {
-		s.isDead = true;
+		s.die();
 	}
 
 	public void addItem(Item item) {
 		this.activeItems.add(item);
 	}
-	
+
 	public void addTile(Point tile) {
 		this.tiles.add(tile);
+	}
+
+	public boolean isDead() {
+		return isDead;
 	}
 
 }

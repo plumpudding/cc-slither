@@ -40,11 +40,18 @@ public class Kevin { // the game controller
 		}
 		
 		itemsToRemove.clear();
-
+		
+		spawnItems();
+		
 		if(Math.random() >= 0.9){
 			gs.inactiveItems.add(new Food(findEmptyPosition()));
 		}
 
+	}
+	public void spawnItems(){
+		if(Math.random() >= 0.95){
+			gs.inactiveItems.add(new SpeedItem(findEmptyPosition()));
+		}
 	}
 
 	public GameState getGameState() {

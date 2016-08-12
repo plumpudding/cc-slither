@@ -12,7 +12,11 @@ public class Item implements GameObject {
 	public boolean isAtPoint(Point p) {
 		return p == location;
 	}
-
+	public Item(Point point) {
+		this.location = point;
+	}
+	
+	
 	@Override
 	public void tick() {
 		activeDuration = 10;

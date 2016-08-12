@@ -1,27 +1,21 @@
 package at.computercamp.slither.server;
 
-import java.net.InetAddress;
+import java.net.SocketAddress;
 
 public class Client {
 
-	private InetAddress address;
-	private int port;
 	private Snake snake;
 	private long lastSeen;
+	private SocketAddress socketAddress;
 
-	public Client(InetAddress address, int port, Snake snake) {
-		this.address = address;
-		this.port = port;
+	public Client(SocketAddress socketAddress, Snake snake) {
+		this.socketAddress = socketAddress;
 		this.snake = snake;
 		this.lastSeen = System.currentTimeMillis();
 	}
 
-	public InetAddress getAddress() {
-		return address;
-	}
-
-	public int getPort() {
-		return port;
+	public SocketAddress getSocketAddress() {
+		return socketAddress;
 	}
 
 	public Snake getSnake() {

@@ -112,8 +112,6 @@ public class Snake implements GameObject {
 
 	public void addItem(Item item) {
 		activeItems.add(item);
-		item.activate();
-
 	}
 
 }

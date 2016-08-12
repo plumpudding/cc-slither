@@ -34,7 +34,7 @@ public class Item implements GameObject {
 		s.addItem(this);
 	}
 
-	public void activate() {
-		// TODO
+	public boolean isActive() {
+		return isActive;
 	}
 }

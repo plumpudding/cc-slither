@@ -31,7 +31,7 @@ public class GameServer {
 	}
 
 	// GameServer Singleton
-	
+
 	private static GameServer instance;
 
 	public static GameServer getInstance() {
@@ -41,12 +41,12 @@ public class GameServer {
 	}
 
 	// main loop
-	
+
 	public void loop() {
 		controller.tick();
 
 		for (Client client : clients) {
- 			sendDataToClient(client);
+			sendDataToClient(client);
 			if (!client.isOnline()) {
 				clients.remove(client);
 				controller.removeSnake(client.getSnake());
@@ -60,35 +60,35 @@ public class GameServer {
 
 	// network stuff
 
-	//serialize the gs and send it to the client
+	// serialize the gs and send it to the client
 	public void sendDataToClient(Client client) {
 		if (gameStateJson == null)
 			gameStateJson = gson.toJson(controller.getGameState());
 
 		networking.sendData(client.getAddress(), client.getPort(), gameStateJson);
 	}
-	
+
 	public Kevin getController() {
 		return controller;
 	}
-	
+
 	public void handleClientAction(String clientActionJson, InetAddress sourceAddress, int sourcePort) {
 		ClientAction action = gson.fromJson(clientActionJson, ClientAction.class);
-		
+
 		Snake snake = null;
-		
-		for (Client client:clients) {
+
+		for (Client client : clients) {
 			if (client.getSnake().getName() == action.getName()) {
 				snake = client.getSnake();
 				break;
 			}
 		}
-		
+
 		if (snake == null) {
 			snake = controller.addSnake(action.getName());
 			clients.add(new Client(sourceAddress, sourcePort, snake));
 		}
-		
+
 		controller.handleClientAction(action, snake);
 	}
 }

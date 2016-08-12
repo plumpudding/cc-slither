@@ -6,14 +6,14 @@ public class Item implements GameObject {
 	private double inactiveDuration;
 	private Point location;
 	public boolean isDestroyed;
-	
+
 	public boolean isAtPoint(Point p) {
 		return p == location;
 	}
 
 	@Override
 	public void tick() {
-		if(Math.random() < inactiveDuration)
+		if (Math.random() < inactiveDuration)
 			isDestroyed = true;
 	}
 
@@ -25,13 +25,13 @@ public class Item implements GameObject {
 	public void collide(Snake s) {
 		s.addItem(this);
 	}
-	
+
 	public void activate() {
-		//TODO
+		// TODO
 	}
 
 	protected void applyEffectToSnake(Snake snake) {
-		//TODO
+		// TODO
 	}
-	
+
 }

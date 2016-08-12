@@ -5,13 +5,12 @@ package at.computercamp.slither.server;
  */
 public class SlowItem extends Item {
 
-
-    @Override
-    protected void applyEffectToSnake(Snake snake) {
-        long startTime = System.currentTimeMillis();
-        snake.setIsSlow(true);
-        if (startTime >= 10000) {
-            snake.setIsSlow(false);
-        }
-    }
+	@Override
+	protected void applyEffectToSnake(Snake snake) {
+		long startTime = System.currentTimeMillis();
+		snake.setIsSlow(true);
+		if (startTime >= 10000) {
+			snake.setIsSlow(false);
+		}
+	}
 }

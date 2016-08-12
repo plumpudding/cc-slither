@@ -1,0 +1,5 @@
+{"snakes":[{"playerName":"PlayerName1","tiles":[{"x":1,"y":1},{"x":1,"y":2},{"x":1,"y":3}],"activeItems":[{"sizeIncrement":1,"type":"Food"},{"sizeIncrement":2,"type":"Food"}],"speed":1,"color":{"r":0,"g":255,"b":0}},{"playerName":"PlayerName2","tiles":[{"x":2,"y":2},{"x":2,"y":2},{"x":2,"y":3}],"activeItems":[{"sizeIncrement":3,"type":"Food"},{"sizeIncrement":1,"type":"Food"}],"speed":1,"color":{"r":0,"g":0,"b":255}}],"inactiveItems":[{"sizeIncrement":1,"position":{"x":5,"y":10},"type":"Food"},{"sizeIncrement":2,"position":{"x":10,"y":15},"type":"Food"}],"worldWidth":10,"worldHeight":15}
+
+
+
+{"direction":"North","isFast":true,"snakeName":"Snake1"}

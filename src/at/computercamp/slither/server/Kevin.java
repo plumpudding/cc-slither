@@ -10,7 +10,7 @@ public class Kevin { // the game controller
 	public void tick() {
 		for (Snake snake : gs.snakes) {
 			snake.tick();
-			if (snake.isDead) {
+			if (snake.isDead()) {
 				gs.snakes.remove(snake);
 				snake = null;
 			}
@@ -117,6 +117,11 @@ public class Kevin { // the game controller
 
 	public void removeSnake(Snake snake) {
 		gs.snakes.remove(snake);
+	}
+
+	public void additem(Food food) {
+		gs.inactiveItems.add(food);
+		
 	}
 
 }

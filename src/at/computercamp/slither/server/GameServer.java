@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 public class GameServer {
 
 	private int listenPort = 12345;
-	private Kevin controller = new Kevin();
+	private Paul controller = new Paul();
 	private Networking networking;
 	private List<Client> clients = new ArrayList<Client>();
 	private List<Client> clientsToRemove = new ArrayList<Client>();
@@ -82,7 +82,7 @@ public class GameServer {
 		networking.sendData(((InetSocketAddress) client.getSocketAddress()).getAddress(), ((InetSocketAddress) client.getSocketAddress()).getPort(), gameStateJson);
 	}
 
-	public Kevin getController() {
+	public Paul getController() {
 		return controller;
 	}
 

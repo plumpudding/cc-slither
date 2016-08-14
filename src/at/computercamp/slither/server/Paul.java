@@ -4,7 +4,7 @@ package at.computercamp.slither.server;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kevin { // the game controller
+public class Paul { // the game controller
 
 	private GameState gs = new GameState();
 	private List<Snake> snakesToRemove = new ArrayList<Snake>();
